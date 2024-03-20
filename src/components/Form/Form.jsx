@@ -30,12 +30,11 @@ export default function Form() {
   const handleSubmit = e => {
     e.preventDefault()
     const emailRegex = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
-    if ((userData.password === userData.confirmed_password) && (userData.password.length >= 8) && (emailRegex.test(userData.email)) && (userData.choice_subject !== "")) {
+    if ((userData.password === userData.confirmed_password) && (userData.password.length >= 8) && (emailRegex.test(userData.email)) && (userData.choice_subject !== "") && (!errorMsg)) {
       setSuccessMsg("Successfully registered!")
       setTimeoutId(setTimeout(() => {
         setSuccessMsg("")
       }, 2000))
-      clearTimeout(timeoutId)
       setUserData(prevData => ({
         email: "",
         password: "",
@@ -75,6 +74,8 @@ export default function Form() {
         setEmptyChoiceSubject(false)
       }, 2000))
       clearTimeout(timeoutId)
+    } else if (errorMsh) {
+      
     }
   }
 
@@ -83,7 +84,7 @@ export default function Form() {
   }
 
   const successStyle = {
-    right: successMsg && "0"
+    right: (successMsg) && "0"
   }
 
   return (
@@ -124,8 +125,8 @@ export default function Form() {
             <option value="Хімія">Хімія</option>
           </select>
           <button onClick={handleSubmit} className='register__btn'>Register</button>
-          <h2 style={errorStyle} className='error_msg'>{errorMsg}</h2>
-          <h2 style={successStyle} className='successfully_registered'>{successMsg}</h2>
+          {errorMsg && <h2 style={errorStyle} className='error_msg'>{errorMsg}</h2>}
+          {successMsg && <h2 style={successStyle} className='successfully_registered'>{successMsg}</h2>}
         </form>
       </div>
     </>
