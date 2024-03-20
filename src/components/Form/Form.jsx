@@ -125,8 +125,8 @@ export default function Form() {
             <option value="Хімія">Хімія</option>
           </select>
           <button onClick={handleSubmit} className='register__btn'>Register</button>
-          {errorMsg && <h2 style={errorStyle} className='error_msg'>{errorMsg}</h2>}
-          {successMsg && <h2 style={successStyle} className='successfully_registered'>{successMsg}</h2>}
+          <h2 style={errorStyle} className='error_msg'>{errorMsg}</h2>
+          <h2 style={successStyle} className='successfully_registered'>{successMsg}</h2>
         </form>
       </div>
     </>
